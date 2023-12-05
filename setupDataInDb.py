@@ -1,16 +1,10 @@
 
-from flask import Flask
 from models.CustomerTicket import CustomerTicket
 from models.Menu import Menu
 from models.Waiter import Waiter
 from models.TicketToMenu import customer_ticket_to_menu_m2m
 from sqlalchemyconfig import db
-
-app = Flask(__name__)
-# configure the SQLite database, relative to the app instance folder
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///restaurant.sqlite"
-# initialize the app with the extension
-db.init_app(app)
+from flaskapp import app
 
 with app.app_context():
     db.create_all()

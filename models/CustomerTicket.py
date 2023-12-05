@@ -1,10 +1,21 @@
 
+from dataclasses import dataclass
 from sqlalchemy import Column, ForeignKey, Integer, String
 from models.Waiter import Waiter
 
 from sqlalchemyconfig import db
+from sqlalchemy.orm import Mapped
+from typing import List
 
+@dataclass
 class CustomerTicket(db.Model):
+    id:int
+    arrival:str
+    departed:str
+    table_id:int
+    waiter: Mapped["Waiter"]
+    items: Mapped[List["Menu"]]
+
     id = Column(Integer, primary_key=True)
     arrival = Column(String)
     departed = Column(String)

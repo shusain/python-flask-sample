@@ -1,43 +1,17 @@
-from flask import Flask, jsonify, request
+from flask import jsonify, request
 from sqlalchemyconfig import db
+from flaskapp import app
 
 from models.CustomerTicket import CustomerTicket
 from models.Menu import Menu
 from models.Waiter import Waiter
 from models.TicketToMenu import customer_ticket_to_menu_m2m
 
-
-app = Flask(__name__)
-# configure the SQLite database, relative to the app instance folder
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///restaurant.sqlite"
-# initialize the app with the extension
-db.init_app(app)
-
-with app.app_context():
-    db.create_all()
+import waiterRoutes
 
 @app.route("/")
 def hello_world():
     return "<p>Hello, World!</p>"
-
-# Waiter Routes
-@app.route("/waiter", methods=["GET"])
-def waiter_list():
-    waiters = db.session.execute(db.select(Waiter)).scalars()
-    return jsonify(waiters)
-
-@app.route("/waiter", methods=["POST"])
-def waiter_create():
-    content = request.get_json()
-    waiter = Waiter(
-        first_name=content["first_name"],
-        last_name=content["last_name"],
-        tax_number=content["tax_number"]
-    )
-    db.session.add(waiter)
-    db.session.commit()
-
-    return jsonify({ "success": True })
 
 
 # Menu Item Routes
@@ -65,7 +39,7 @@ def menu_item_create():
 # Customer Ticket Routes
 @app.route("/ticket", methods=["GET"])
 def ticket_list():
-    tickets = db.session.execute(db.select(CustomerTicket)).scalars()
+    tickets = CustomerTicket.query.all()
     return jsonify(tickets)
 
 @app.route("/ticket", methods=["POST"])

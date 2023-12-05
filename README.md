@@ -15,6 +15,8 @@ waiter              | GET         | Gets all waiters
 ticket/total        | POST        | Gets the total sum for menu items of a given table                 | `{table_id:int}`
 total_revenue       | GET         | Gets the total revenue from all items on customer tickets
 
+## 
+
 
 ## Requests
 
@@ -41,8 +43,6 @@ GET http://127.0.0.1:5000/total-revenue HTTP/1.1
 
 ### Waiter
 
-#### Create
-
 ```rest
 POST http://127.0.0.1:5000/waiter HTTP/1.1
 content-type: application/json
@@ -54,19 +54,14 @@ content-type: application/json
 }
 ```
 
-#### List
-
 ```rest
 GET http://127.0.0.1:5000/waiter HTTP/1.1
 ```
 
 ### Menu Item
-#### List
 ```rest
 GET http://127.0.0.1:5000/menu HTTP/1.1
 ```
-
-#### Create
 
 ```rest
 POST http://127.0.0.1:5000/menu HTTP/1.1
@@ -76,5 +71,25 @@ content-type: application/json
     "item_name": "Burger",
     "description": "A tasty burger",
     "price": 6.99
+}
+```
+
+
+
+
+### Menu Item
+```rest
+GET http://127.0.0.1:5000/ticket HTTP/1.1
+```
+
+```rest
+POST http://127.0.0.1:5000/ticket HTTP/1.1
+content-type: application/json
+
+{
+    "arrival": "3:12",
+    "departed": "4:15",
+    "table_id": 10,
+    "waiter_id": 1
 }
 ```
