@@ -1,5 +1,4 @@
 from flask import jsonify, request
-from sqlalchemyconfig import db
 from flaskapp import app
 
 from models.CustomerTicket import CustomerTicket

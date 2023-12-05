@@ -16,7 +16,8 @@ def ticket_create():
     ticket = CustomerTicket(
         arrival=content["arrival"],
         departed=content["departed"],
-        table_id=content["table_id"]
+        table_id=content["table_id"],
+        waiter_id=content["waiter_id"]
     )
 
     db.session.add(ticket)

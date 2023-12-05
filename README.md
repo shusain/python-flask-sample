@@ -73,7 +73,7 @@ content-type: application/json
     "arrival": "3:12",
     "departed": "4:15",
     "table_id": 10,
-    "waiter_id": 1
+    "waiter_id": 3
 }
 ```
 

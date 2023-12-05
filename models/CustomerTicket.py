@@ -1,6 +1,7 @@
 
 from dataclasses import dataclass
 from sqlalchemy import Column, ForeignKey, Integer, String
+from models.MenuItem import MenuItem
 from models.Waiter import Waiter
 
 from sqlalchemyconfig import db
