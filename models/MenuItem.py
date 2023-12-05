@@ -3,7 +3,7 @@ from sqlalchemy import Column, Integer, String, Numeric
 from sqlalchemyconfig import db
 
 @dataclass
-class Menu(db.Model):
+class MenuItem(db.Model):
     item_name: str
     description: str
     price: float

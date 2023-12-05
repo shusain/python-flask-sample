@@ -14,7 +14,7 @@ class CustomerTicket(db.Model):
     departed:str
     table_id:int
     waiter: Mapped["Waiter"]
-    items: Mapped[List["Menu"]]
+    items: Mapped[List["MenuItem"]]
 
     id = Column(Integer, primary_key=True)
     arrival = Column(String)
@@ -26,5 +26,5 @@ class CustomerTicket(db.Model):
     waiter_id = Column(ForeignKey("waiter.id"))
     
     # Customer ticket must allow for multiple menu items (only need to account for one of each item type)
-    items = db.relationship("Menu", back_populates="tickets", secondary="customer_ticket_to_menu")
+    items = db.relationship("MenuItem", back_populates="tickets", secondary="customer_ticket_to_menu")
     
