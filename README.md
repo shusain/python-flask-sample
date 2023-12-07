@@ -1,3 +1,25 @@
+## Setup
+
+Create and activate a python virtual env for project dependencies:
+
+```bash
+python3.11 -m venv .venv 
+#Replace python3.11 with python3 or python if your system python is at least 3.8 it should work fine with Flask
+
+# Activate the virtual environment to isolate dependency install
+. .venv/bin/activate
+
+
+pip install -r requirements.txt
+```
+
+## Scripts
+```bash
+python createDB.py                   # Initializes the empty DB/table structure
+python setupDataInDB.py              # Populates the already created DB with some test data.
+flask --app restaurant-api run  # Start the service
+```
+
 ## Endpoints needed
 Create CustomerTicket, Create Menu Items, Create Waiters,
 
@@ -12,12 +34,6 @@ waiter              | GET         | Gets all waiters
 ticket/total        | POST        | Gets the total sum for menu items of a given table                 | `{table_id:int}`
 total_revenue       | GET         | Gets the total revenue from all items on customer tickets
 
-## Scripts
-```bash
-./createDB.py                   # Initializes the empty DB/table structure
-./setupDataInDB.py              # Populates the already created DB with some test data.
-flask --app restaurant-api run  # Start the service
-```
 
 ## Test Requests
 
